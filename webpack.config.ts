@@ -32,14 +32,14 @@ const config: Configuration & Record<string, any> = {
         test: /\.tsx?$/,
         loader: "ts-loader",
       },
-      {
-        test: /\.(jpg|png|gif|svg)$/,
-        use: [
-          {
-            loader: "file-loader",
-          },
-        ],
-      },
+      // {
+      //   test: /\.(jpg|png|gif|svg)$/,
+      //   use: [
+      //     {
+      //       loader: "file-loader",
+      //     },
+      //   ],
+      // },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
@@ -61,7 +61,7 @@ const config: Configuration & Record<string, any> = {
         {
           from: "**/*",
           context: path.resolve(__dirname, "src", "assets"),
-          to: "./assets",
+          to: "./src/assets",
         },
       ],
     }),
