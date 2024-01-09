@@ -15,7 +15,7 @@ const config: Configuration & Record<string, any> = {
   },
   target: ['web', 'es2022'],
   resolve: {
-    extensions: ['.ts', '.tsx'],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   devServer: {
     static: {
