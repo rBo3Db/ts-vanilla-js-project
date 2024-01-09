@@ -33,30 +33,36 @@ const config: Configuration & Record<string, any> = {
         loader: 'ts-loader',
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.scss$/,
+        use: [
+            // fallback to style-loader in development
+            process.env.NODE_ENV !== 'production'
+                ? 'style-loader'
+                : MiniCssExtractPlugin.loader,
+            'css-loader',
+            'sass-loader'
+        ]
+    },
+    {
+        test: /\.(jpg|png|gif|svg)$/,
+        use: [
+            {
+                loader: 'file-loader',
+            },
+        ],
+    },
+        // {
+        //   test: /\.css$/i,
+        //   use: ["style-loader", "css-loader"],
+        // },
+      {
+        test: /\.(svg|woff|woff2|ttf|eot|otf)([\?]?.*)$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {},
+            loader: 'file-loader?name=assets/fonts/[name].[ext]',
           },
-          {
-            loader: "css-loader",
-            options: {
-              url: false,
-            },
-          },
-          'postcss-loader',
-          'sass-loader',
         ],
       },
-      // {
-      //   test: /\.(svg|woff|woff2|ttf|eot|otf)([\?]?.*)$/,
-      //   use: [
-      //     {
-      //       loader: 'file-loader?name=assets/fonts/[name].[ext]',
-      //     },
-      //   ],
-      // },
     ],
   },
   plugins: [
@@ -81,7 +87,10 @@ const config: Configuration & Record<string, any> = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: 'style-[hash].css',
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: ".[name].css",
+      chunkFilename: "[id].css"
     }),
   ],
 };

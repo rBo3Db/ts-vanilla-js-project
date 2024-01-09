@@ -1,0 +1,13 @@
+body {
+  color: green;
+}
+.main {
+  height: 100%;
+  width: 100%;
+  color: black;
+}
+
+.first {
+  background-image: "./assets/summer-bg.jpg";
+  background: red;
+}
