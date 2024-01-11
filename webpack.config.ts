@@ -45,13 +45,18 @@ const config: Configuration & Record<string, any> = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(svg|woff|woff2|ttf|eot|otf)([\?]?.*)$/,
+        test: /\.(svg|woff|woff2|eot|otf)([\?]?.*)$/,
         use: [
           {
-            loader: "file-loader?name=assets/fonts/[name].[ext]",
+            loader: "file-loader?name=/fonts/[name].[ext]",
           },
         ],
       },
+      {
+        test: /\.ttf?$/i,
+        type: 'asset/resource',
+        dependency: { not: ['url'] },
+      }, 
     ],
   },
   plugins: [
