@@ -92,21 +92,62 @@ body {
 }
 .main {
   /* width: 100%; */
+  display: grid;
+  gap: 32px;
+  grid-template-areas: "A A A"
+  "B C D"
+  ". E .";
 }
 
 h1 {
+  grid-area: A;
   color: orange;
+  font-size: 62px;
+  text-align: center;
+  margin: 0;
+}
+
+.button {
+  display: block;
+  background-size: cover;
+  border-radius: 16px;
+  width: 160px;
+  height: 160px;
+  border-color: white;
+}
+
+.summer-button {
+  background-image: url("./assets/summer-bg.jpg");
+  grid-area: B;
+}
+.rainy-button {
+  grid-area: C;
+  background-image: url("./assets/rainy-bg.jpg");
+}
+.winter-button {
+  grid-area: D;
+  background-image: url("./assets/winter-bg.jpg");
+}
+
+.background {
+  background-size: cover;
 }
 
 .summer {
   background: url("./assets/summer-bg.jpg");
-  background-size: cover;
 }
 .winter {
+
   background: url("./assets/winter-bg.jpg");
-  background-size: cover;
 }
 .rainy {
+
   background: url("./assets/rainy-bg.jpg");
-  background-size: cover;
+}
+.range {
+  grid-area: E;
+}
+
+.label {
+  display: none;
 }
