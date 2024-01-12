@@ -32,31 +32,15 @@ const config: Configuration & Record<string, any> = {
         test: /\.tsx?$/,
         loader: "ts-loader",
       },
-      // {
-      //   test: /\.(jpg|png|gif|svg)$/,
-      //   use: [
-      //     {
-      //       loader: "file-loader",
-      //     },
-      //   ],
-      // },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(svg|woff|woff2|eot|otf)([\?]?.*)$/,
-        use: [
-          {
-            loader: "file-loader?name=/fonts/[name].[ext]",
-          },
-        ],
+        test: /\.(ttf)?$/i,
+        type: "asset/resource",
+        dependency: { not: ["url"] },
       },
-      {
-        test: /\.ttf?$/i,
-        type: 'asset/resource',
-        dependency: { not: ['url'] },
-      }, 
     ],
   },
   plugins: [
@@ -66,7 +50,7 @@ const config: Configuration & Record<string, any> = {
         {
           from: "**/*",
           context: path.resolve(__dirname, "src", "assets"),
-          to: "./src/assets",
+          to: "./assets",
         },
       ],
     }),
