@@ -7,10 +7,20 @@
     <link rel="stylesheet" type="css" href="styles.css">
     <!-- <link rel="stylesheet" href="./css/styles.css"> -->
   </head>
-  <body>
-    <main class="main" id="main">
+  <body class="summer" id="body">
+    <main class="main">
       <h1>Weather Sounds</h1>
+      <button type="button" title="summer" className="summer-button">
+        <img width="24px" height="24px" alt="sun" src="./assets/icons/sun.svg" />
+      </button>
+      <button type="button" title="rainy" className="rainy-button">
+        <img alt="rainy" src="./assets/icons/rainy.svg" />
+      </button>
+      <button type="button" title="winter" className="winter-button">
+        <img alt="winter" src="./assets/icons/winter.svg" />
+      </button>
+      <label for="range">Громкость</label>
+      <input id="range" type="range" min="0" max="100" step="1" value="50"> 
     </main>
-    <!-- <article>aaaaaaa</article> -->
   </body>
 </html>

@@ -76,15 +76,22 @@
 }
 
 body {
+  box-sizing: border-box;
   font-family: "Roboto";
   padding: 0;
   margin: 0;
   border: 0;
   border-radius: 0;
-}
-.main {
   height: 100vh;
   width: 100%;
+  display: flex;
+  /* justify-items: center; */
+  align-items: center;
+  justify-content: center;
+
+}
+.main {
+  /* width: 100%; */
 }
 
 h1 {
@@ -93,5 +100,13 @@ h1 {
 
 .summer {
   background: url("./assets/summer-bg.jpg");
+  background-size: cover;
+}
+.winter {
+  background: url("./assets/winter-bg.jpg");
+  background-size: cover;
+}
+.rainy {
+  background: url("./assets/rainy-bg.jpg");
   background-size: cover;
 }
