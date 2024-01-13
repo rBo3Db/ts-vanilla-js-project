@@ -62,6 +62,9 @@ body?.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
+document.getElementById("range")?.addEventListener("change", (e) => {
+  audio.volume = Number((e.target as HTMLInputElement).value) / 100;
+});
 // main?.classList.add(
 //   "first"
 // )
