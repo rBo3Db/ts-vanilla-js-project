@@ -3,27 +3,9 @@ import "./styles.css";
 const body = document.getElementById("body");
 
 let audio = new Audio("./assets/sounds/summer.mp3");
-audio.muted;
-let previosClick = "";
-audio.load();
-// let audiosWeWantToUnlock: [] = [];
-// document.body.addEventListener(
-//   "touchstart",
-//   function () {
-//     if (audiosWeWantToUnlock) {
-//       for (let audio of audiosWeWantToUnlock) {
-//         audio.play();
-//         audio.pause();
-//         audio.currentTime = 0;
-//       }
-//       audiosWeWantToUnlock = null;
-//     }
-//   },
-//   false
-// );
-// //where earlier you did:
 
-// audiosWeWantToUnlock.push(audio);
+let previosClick = "";
+let volume = 0.5;
 
 const changeAndPlayAudio = (link: string) => {
   audio.pause();
@@ -31,8 +13,6 @@ const changeAndPlayAudio = (link: string) => {
   audio = new Audio(link);
   audio.play();
 };
-
-changeAndPlayAudio("./assets/sounds/summer.mp3");
 
 body?.addEventListener("click", (e) => {
   const bodyCLasses = body?.classList;
@@ -71,11 +51,12 @@ body?.addEventListener("click", (e) => {
       bodyCLasses?.add("winter");
     }
   }
+  audio.volume = volume;
   e.stopPropagation();
 });
 
 document.getElementById("range")?.addEventListener("change", (e) => {
-  audio.volume = Number((e.target as HTMLInputElement).value) / 100;
+  volume = Number((e.target as HTMLInputElement).value) / 100;
 });
 // main?.classList.add(
 //   "first"
