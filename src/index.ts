@@ -1,39 +1,63 @@
 import "./styles.css";
 
-// console.log(styles);
 const body = document.getElementById("body");
 
-// console.log(body);
+let audio = new Audio("./assets/sounds/summer.mp3");
+audio.load();
+// let audiosWeWantToUnlock: [] = [];
+// document.body.addEventListener(
+//   "touchstart",
+//   function () {
+//     if (audiosWeWantToUnlock) {
+//       for (let audio of audiosWeWantToUnlock) {
+//         audio.play();
+//         audio.pause();
+//         audio.currentTime = 0;
+//       }
+//       audiosWeWantToUnlock = null;
+//     }
+//   },
+//   false
+// );
+// //where earlier you did:
 
+// audiosWeWantToUnlock.push(audio);
+
+const changeAndPlayAudio = (link: string) => {
+  audio.pause();
+  audio.currentTime = 0;
+  audio = new Audio(link);
+  audio.play();
+};
+
+changeAndPlayAudio("./assets/sounds/summer.mp3");
 body?.addEventListener("click", (e) => {
-  const classesOfBody = body?.classList;
+  const bodyCLasses = body?.classList;
   const target = (e.target as Element).id;
-  console.log(classesOfBody, '----------')
-  console.log(target, '----------')
   if (
-    (target === "summer-button" || "summer-image") &&
-    !classesOfBody?.contains("summer")
+    (target === "summer-button" || target === "summer-image") &&
+    !bodyCLasses?.contains("summer")
   ) {
-    // classesOfBody?.contains("summer");
-    classesOfBody?.remove("winter");
-    classesOfBody?.remove("rainy");
-    classesOfBody?.add("summer");
+    changeAndPlayAudio("./assets/sounds/summer.mp3");
+    bodyCLasses?.remove("winter");
+    bodyCLasses?.remove("rainy");
+    bodyCLasses?.add("summer");
   } else if (
-    (target === "rainy-button" || "rainy-image") &&
-    !classesOfBody?.contains("rainy")
+    (target === "rainy-button" || target === "rainy-image") &&
+    !bodyCLasses?.contains("rainy")
   ) {
-    // classesOfBody?.contains("summer");
-    classesOfBody?.remove("winter");
-    classesOfBody?.remove("summer");
-    classesOfBody?.add("rainy");
+    changeAndPlayAudio("./assets/sounds/rain.mp3");
+    bodyCLasses?.remove("winter");
+    bodyCLasses?.remove("summer");
+    bodyCLasses?.add("rainy");
   } else if (
-    (target === "winter-button" || "winter-image") &&
-    !classesOfBody?.contains("winter")
+    (target === "winter-button" || target === "winter-image") &&
+    !bodyCLasses?.contains("winter")
   ) {
-    // classesOfBody?.contains("summer");
-    classesOfBody?.remove("summer");
-    classesOfBody?.remove("rainy");
-    classesOfBody?.add("winter");
+    changeAndPlayAudio("./assets/sounds/winter.mp3");
+    bodyCLasses?.remove("summer");
+    bodyCLasses?.remove("rainy");
+    bodyCLasses?.add("winter");
   }
   e.stopPropagation();
 });
