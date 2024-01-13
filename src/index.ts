@@ -3,6 +3,8 @@ import "./styles.css";
 const body = document.getElementById("body");
 
 let audio = new Audio("./assets/sounds/summer.mp3");
+audio.muted;
+let previosClick = "";
 audio.load();
 // let audiosWeWantToUnlock: [] = [];
 // document.body.addEventListener(
@@ -31,33 +33,43 @@ const changeAndPlayAudio = (link: string) => {
 };
 
 changeAndPlayAudio("./assets/sounds/summer.mp3");
+
 body?.addEventListener("click", (e) => {
   const bodyCLasses = body?.classList;
   const target = (e.target as Element).id;
-  if (
-    (target === "summer-button" || target === "summer-image") &&
-    !bodyCLasses?.contains("summer")
-  ) {
-    changeAndPlayAudio("./assets/sounds/summer.mp3");
-    bodyCLasses?.remove("winter");
-    bodyCLasses?.remove("rainy");
-    bodyCLasses?.add("summer");
-  } else if (
-    (target === "rainy-button" || target === "rainy-image") &&
-    !bodyCLasses?.contains("rainy")
-  ) {
-    changeAndPlayAudio("./assets/sounds/rain.mp3");
-    bodyCLasses?.remove("winter");
-    bodyCLasses?.remove("summer");
-    bodyCLasses?.add("rainy");
-  } else if (
-    (target === "winter-button" || target === "winter-image") &&
-    !bodyCLasses?.contains("winter")
-  ) {
-    changeAndPlayAudio("./assets/sounds/winter.mp3");
-    bodyCLasses?.remove("summer");
-    bodyCLasses?.remove("rainy");
-    bodyCLasses?.add("winter");
+  if (target === "summer-button" || target === "summer-image") {
+    if (previosClick === "summer") {
+      audio.pause();
+      previosClick = "";
+    } else {
+      previosClick = "summer";
+      changeAndPlayAudio("./assets/sounds/summer.mp3");
+      bodyCLasses?.remove("winter");
+      bodyCLasses?.remove("rainy");
+      bodyCLasses?.add("summer");
+    }
+  } else if (target === "rainy-button" || target === "rainy-image") {
+    if (previosClick === "rainy") {
+      audio.pause();
+      previosClick = "";
+    } else {
+      previosClick = "rainy";
+      changeAndPlayAudio("./assets/sounds/rain.mp3");
+      bodyCLasses?.remove("winter");
+      bodyCLasses?.remove("summer");
+      bodyCLasses?.add("rainy");
+    }
+  } else if (target === "winter-button" || target === "winter-image") {
+    if (previosClick === "winter") {
+      audio.pause();
+      previosClick = "";
+    } else {
+      previosClick = "winter";
+      changeAndPlayAudio("./assets/sounds/winter.mp3");
+      bodyCLasses?.remove("summer");
+      bodyCLasses?.remove("rainy");
+      bodyCLasses?.add("winter");
+    }
   }
   e.stopPropagation();
 });
